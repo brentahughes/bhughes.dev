@@ -1,27 +1,96 @@
-<html>
+<!DOCTYPE html>
+<html lang="en">
     <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
         <title>Brent Hughes</title>
-    </head>
-    <body>
-        <style>
-            html {
-                /* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#000000+0,000000+100&amp;0+0,0.22+98 */
-                background: -moz-radial-gradient(center, ellipse cover,  rgba(0,0,0,0) 0%, rgba(0,0,0,0.22) 98%, rgba(0,0,0,0.22) 100%); /* FF3.6-15 */
-                background: -webkit-radial-gradient(center, ellipse cover,  rgba(0,0,0,0) 0%,rgba(0,0,0,0.22) 98%,rgba(0,0,0,0.22) 100%); /* Chrome10-25,Safari5.1-6 */
-                background: radial-gradient(ellipse at center,  rgba(0,0,0,0) 0%,rgba(0,0,0,0.22) 98%,rgba(0,0,0,0.22) 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
-                filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#00000000', endColorstr='#38000000',GradientType=1 ); /* IE6-9 fallback on horizontal gradient */
+
+        <link rel="stylesheet" href="/content/css/bootstrap.min.css">
+        <link rel="stylesheet" href="/content/css/font-awesome.min.css">
+
+        <style type="text/css">
+            .jumbotron {
+                margin-top: -20px;
+                color: #fff;
+                background-image: url("/content/img/background.jpg");
+                background-size: 100% ;
+                background-repeat: no-repeat;
             }
 
-            .main {
-        position:absolute;
-        top: 150px;
-        height: 100px;
-        width: 100%;
-        text-align: center;
-        font-size: 100px;
+            .footer {
+                position: absolute;
+                bottom: 0;
+                width: 100%;
             }
         </style>
+    </head>
+    <body>
+        <nav class="navbar navbar-inverse">
+            <a class="navbar-brand" href="/">Brentahughes.com</a>
+        </nav>
 
-        <div class='main'>Welcome to brentahughes.com</div>
+        <div class="jumbotron text-center hidden-xs">
+            <div class="container">
+                <div class="col-md-12">
+                    <h1>Welcome To Brentahughes.com</h1>
+                </div>
+            </div>
+        </div>
+
+        <div class="container">
+            <div class="col-md-3">
+                <h2>Statistics</h2>
+                <p class="">Open source contribution statistics coming soon</p>
+            </div>
+            <div class="col-md-6">
+                <h2>About</h2>
+                <p>Dedicated software engineer that is constantly looking for new technologies.</p>
+            </div>
+            <div class="col-md-3">
+                <h2>Contact</h2>
+
+                <table class="table">
+                    <tbody>
+                        <tr>
+                            <td>Phone</td>
+                            <td align="right"><a href="tel:9727405421">(972) 740 5421</a></td>
+                        </tr>
+                        <tr>
+                            <td>Email</td>
+                            <td align="right">
+                                <a href="mailto:brent@brentahughes.com" target="_top">
+                                    brent@brentahughes.com
+                                </a>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td valign="top">Address</td>
+                            <td align="right"><a href="http://maps.google.com/?q=2505 Persimmon Dr Little Elm TX 75068">
+                                2505 Persimmon Dr </br>Little Elm, TX, 75068</a>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <div class="footer container text-center">
+            <div class="col-md-12">
+                <a class="btn btn-social-icon btn-github" href="https://github.com/bah2830" target="_new">
+                    <i class="fa fa-2x fa-github"></i>
+                </a>
+                <a class="btn btn-social-icon btn-gitlab" href="https://gitlab.com/u/bah2830" target="_new">
+                    <i class="fa fa-2x fa-gitlab"></i>
+                </a>
+                <a class="btn btn-social-icon btn-bitbucket" href="https://bitbucket.org/bah2830/" target="_new">
+                    <i class="fa fa-2x fa-bitbucket"></i>
+                </a>
+                <a class="btn btn-social-icon btn-linkedin" href="https://www.linkedin.com/in/brent-hughes" target="_new">
+                    <i class="fa fa-2x fa-linkedin"></i>
+                </a>
+            </div>
+        </div>
     </body>
-<body>
+</html>
