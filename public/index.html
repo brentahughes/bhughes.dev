@@ -11,97 +11,136 @@
         <link rel="stylesheet" href="/content/css/font-awesome.min.css">
 
         <style type="text/css">
-            .jumbotron {
-                margin-top: -20px;
+            #top-banner {
                 color: #fff;
                 background-image: url("/content/img/background.jpg");
-                background-size: 100% ;
+                background-size: 100%;
+                background-color: transparent;
                 background-repeat: no-repeat;
             }
 
-            .footer {
-                position: fixed;
-                bottom: 0;
-                width: 100%;
-            }
-
-            .navbar {
-                border-radius: 0;
-            }
-
             .btn-social-icon {
-                color: #ccc;
+                color: #888;
             }
 
-            .btn-social-icon:hover {
+            .btn-social-link {
+                color: #000;
+            }
+
+            .borderless > tbody > tr > td, .borderless > thead > tr > th {
+                border: none;
+            }
+
+            .btn-social-link {
                 color: #fff;
+                margin: 0 0 3px 0;
             }
         </style>
     </head>
     <body>
-        <nav class="navbar navbar-inverse">
-            <a class="navbar-brand" href="/">Brentahughes.com</a>
-        </nav>
-
-        <div class="jumbotron text-center hidden-xs">
-            <div class="container">
-                <div class="col-md-12">
-                    <h1>Welcome To Brentahughes.com</h1>
-                </div>
-            </div>
+        <div id="top-banner" class="jumbotron text-center">
+            <h1>Brent Hughes</h1>
         </div>
 
         <div class="container">
-            <div class="col-md-3">
-                <h2>Statistics</h2>
-                <p class="">Open source contribution statistics coming soon</p>
-            </div>
-            <div class="col-md-6">
-                <h2>About</h2>
-                <p>Dedicated software engineer that is constantly looking for new technologies.</p>
-            </div>
-            <div class="col-md-3">
-                <h2>Contact</h2>
+            <div class="row">
+                <div class="col-md-8">
+                    <h2>About Me</h2>
+                    <p>Dedicated software engineer that is constantly looking for new technologies.</p>
+                </div>
+                <div class="col-md-4">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <h4>Projects</h4>
 
-                <table class="table">
-                    <tbody>
-                        <tr>
-                            <td>Phone</td>
-                            <td align="right"><a href="tel:4696579183">(469) 657 9183</a></td>
-                        </tr>
-                        <tr>
-                            <td>Email</td>
-                            <td align="right">
-                                <a href="mailto:brent@brentahughes.com" target="_top">
-                                    brent@brentahughes.com
-                                </a>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td valign="top">Address</td>
-                            <td align="right"><a href="http://maps.google.com/?q=2505 Persimmon Dr Little Elm TX 75068">
-                                2505 Persimmon Dr </br>Little Elm, TX, 75068</a>
-                            </td>
-                        </tr>
-                    </tbody>
-                </table>
-            </div>
-        </div>
+                            <a class="btn btn-primary btn-sm btn-social-link" href="https://github.com/bah2830/hdmi-cec-rest" target="_new">
+                                <i class="fa fa-github"></i> HDMI CEC Rest API
+                            </a>
 
-        <div class="footer navbar-inverse container text-center">
-            <div class="col-md-12">
-                <a class="btn btn-social-icon btn-github" href="https://github.com/bah2830" target="_new">
-                    <i class="fa fa-2x fa-github"></i>
-                </a>
-                <a class="btn btn-social-icon btn-gitlab" href="https://gitlab.com/u/bah2830" target="_new">
-                    <i class="fa fa-2x fa-gitlab"></i>
-                </a>
-                <a class="btn btn-social-icon btn-bitbucket" href="https://bitbucket.org/bah2830/" target="_new">
-                    <i class="fa fa-2x fa-bitbucket"></i>
-                </a>
-                <a class="btn btn-social-icon btn-linkedin" href="https://www.linkedin.com/in/brent-hughes" target="_new">
-                    <i class="fa fa-2x fa-linkedin"></i>
-                </a>
+                            <a class="btn btn-primary btn-sm btn-social-link" href="https://github.com/bah2830/Wedding-Photo-Upload" target="_new">
+                                <i class="fa fa-github"></i> Wedding Photo Upload
+                            </a>
+
+                            <a class="btn btn-primary btn-sm btn-social-link" href="https://github.com/bah2830/piprov" target="_new">
+                                <i class="fa fa-github"></i> Raspberry Pi Provisioning Script
+                            </a>
+                        </div>
+                    </div>
+
+                    <hr>
+
+                    <div class="row">
+                        <div class="col-md-12">
+                            <h4>Contributions</h4>
+
+                            <a class="btn btn-primary btn-sm btn-social-link " href="https://github.com/home-assistant/home-assistant" target="_new">
+                                <i class="fa fa-github"></i> Home Assistant
+                            </a>
+
+                            <a class="btn btn-primary btn-sm btn-social-link " href="https://github.com/home-assistant/home-assistant.io" target="_new">
+                                <i class="fa fa-github"></i> Home Assistant IO
+                            </a>
+
+                            <a class="btn btn-primary btn-sm btn-social-link " href="https://github.com/jcarbaugh/python-roku" target="_new">
+                                <i class="fa fa-github"></i> Python Roku
+                            </a>
+
+                            <a class="btn btn-primary btn-sm btn-social-link " href="https://github.com/google/cadvisor" target="_new">
+                                <i class="fa fa-github"></i> cAdvisor
+                            </a>
+
+                            <a class="btn btn-primary btn-sm btn-social-link " href="https://github.com/home-assistant/netdisco" target="_new">
+                                <i class="fa fa-github"></i> NetDisco
+                            </a>
+                        </div>
+                    </div>
+
+                    <hr>
+
+                    <div class="row">
+                        <div class="col-md-12">
+                            <h4>Contact</h4>
+                            <table class="table table-condensed borderless">
+                                <tbody>
+                                    <tr>
+                                        <td>Phone</td>
+                                        <td align="right"><a href="tel:4696579183">(469) 657 9183</a></td>
+                                    </tr>
+                                    <tr>
+                                        <td>Email</td>
+                                        <td align="right">
+                                            <a href="mailto:brent@brentahughes.com" target="_top">
+                                                brent@brentahughes.com
+                                            </a>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td valign="top">Address</td>
+                                        <td align="right"><a href="http://maps.google.com/?q=2505 Persimmon Dr Little Elm TX 75068">
+                                            2505 Persimmon Dr </br>Little Elm, TX, 75068</a>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-12 text-center">
+                            <a class="btn btn-social-icon btn-github" href="https://github.com/bah2830" target="_new">
+                                <i class="fa fa-2x fa-github"></i>
+                            </a>
+                            <a class="btn btn-social-icon btn-gitlab" href="https://gitlab.com/u/bah2830" target="_new">
+                                <i class="fa fa-2x fa-gitlab"></i>
+                            </a>
+                            <a class="btn btn-social-icon btn-bitbucket" href="https://bitbucket.org/bah2830/" target="_new">
+                                <i class="fa fa-2x fa-bitbucket"></i>
+                            </a>
+                            <a class="btn btn-social-icon btn-linkedin" href="https://www.linkedin.com/in/brent-hughes" target="_new">
+                                <i class="fa fa-2x fa-linkedin"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
     </body>
