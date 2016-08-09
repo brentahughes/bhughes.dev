@@ -1,14 +1,12 @@
-FROM alpine:3.2
+FROM golang:latest
 
-RUN apk add --update tar curl
+COPY . /go/src/gitlab.com/bah2830/personal-website
 
-RUN curl "https://caddyserver.com/download/build?os=linux&arch=amd64&features=prometheus" \
-    | tar --no-same-owner -C /usr/bin/ -xz caddy
+WORKDIR /go/src/gitlab.com/bah2830/personal-website
 
-COPY Caddyfile /etc/Caddyfile
-COPY public /www
+RUN go get
+RUN go build -o /app/personal-website
 
 EXPOSE 80
 
-ENTRYPOINT ["/usr/bin/caddy"]
-CMD ["--conf", "/etc/Caddyfile"]
+CMD ["/app/personal-website"]

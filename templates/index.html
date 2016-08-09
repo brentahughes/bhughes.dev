@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <title>{{.Name}}</title>
+
+        <link rel="stylesheet" href="/content/css/bootstrap.min.css">
+        <link rel="stylesheet" href="/content/css/font-awesome.min.css">
+
+        <style type="text/css">
+            #top-banner {
+                color: #fff;
+                background-image: url("/content/img/background.jpg");
+                background-size: 100%;
+                background-color: transparent;
+                background-repeat: no-repeat;
+            }
+
+            .btn-social-icon {
+                color: #888;
+            }
+
+            .btn-social-link {
+                color: #000;
+            }
+
+            .borderless > tbody > tr > td, .borderless > thead > tr > th {
+                border: none;
+            }
+
+            .btn-social-link {
+                color: #fff;
+                margin: 0 0 3px 0;
+            }
+        </style>
+    </head>
+    <body>
+        <div id="top-banner" class="jumbotron text-center">
+            <h1>{{.Name}}</h1>
+        </div>
+
+        <div class="container">
+            <div class="row">
+                <div class="col-md-8">
+                    <h2>About Me</h2>
+                    <p>Dedicated software engineer that is constantly looking for new technologies.</p>
+                </div>
+                <div class="col-md-4">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <h4>Projects</h4>
+
+                            {{range .Repos}}
+                                <a class="btn btn-primary btn-sm btn-social-link" href="{{.URL}}">
+                                    <i class="fa fa-github"></i> {{.Name}}
+                                </a>
+                            {{end}}
+                        </div>
+                    </div>
+
+                    <hr>
+
+                    <div class="row">
+                        <div class="col-md-12">
+                            <h4>Contributions</h4>
+
+                            {{range .Contributions}}
+                                <a class="btn btn-primary btn-sm btn-social-link " href="{{.URL}}" target="_new">
+                                    <i class="fa fa-github"></i> {{.Name}}
+                                </a>
+                            {{end}}
+                        </div>
+                    </div>
+
+                    <hr>
+
+                    <div class="row">
+                        <div class="col-md-12">
+                            <h4>Contact</h4>
+                            <table class="table table-condensed borderless">
+                                <tbody>
+                                    <tr>
+                                        <td>Phone</td>
+                                        <td align="right"><a href="tel:{{.PhoneNumber}}">{{.PhoneNumber}}</a></td>
+                                    </tr>
+                                    <tr>
+                                        <td>Email</td>
+                                        <td align="right">
+                                            <a href="mailto:{{.Email}}" target="_top">
+                                                {{.Email}}
+                                            </a>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td valign="top">Address</td>
+                                        <td align="right">
+                                            <a href="http://maps.google.com/?q={{.Address}}">
+                                                {{.Address}}
+                                            </a>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-12 text-center">
+                            {{range .SocialIcons}}
+                                <a class="btn btn-social-icon btn-{{.Site}}" href="{{.URL}}" target="_new">
+                                    <i class="fa fa-2x fa-{{.Site}}"></i>
+                                </a>
+                            {{end}}
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </body>
+</html>
