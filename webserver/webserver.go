@@ -5,6 +5,7 @@ import (
 	"html/template"
 	"log"
 	"net/http"
+	"net/url"
 	"strings"
 
 	"github.com/spf13/viper"
@@ -48,20 +49,23 @@ func setUserDetails(p *Page) {
 	p.Name = viper.GetString("name")
 	p.Email = viper.GetString("email")
 	p.PhoneNumber = viper.GetString("phone_number")
-	p.Address = viper.GetString("address")
-
 }
 
 func getSocialIcons() []SocialIcon {
 	icons := []SocialIcon{}
-
 	links := viper.GetStringSlice("social_links")
 	for _, link := range links {
-		parts := strings.Split(link, "|")
+		parts, err := url.Parse(link)
+		if err != nil {
+			fmt.Println(err)
+		}
+
+		host := strings.Replace(parts.Host, "www.", "", -1)
+		hostParts := strings.Split(host, ".")
 
 		icon := SocialIcon{
-			Site: parts[0],
-			URL:  parts[1],
+			Site: hostParts[0],
+			URL:  link,
 		}
 
 		icons = append(icons, icon)
