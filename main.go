@@ -3,8 +3,8 @@ package main
 import (
 	"fmt"
 
-	"github.com/bah2830/personal-website/github"
-	"github.com/bah2830/personal-website/webserver"
+	"github.com/bah2830/brentahughes.com/github"
+	"github.com/bah2830/brentahughes.com/webserver"
 	"github.com/spf13/viper"
 )
 

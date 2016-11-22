@@ -8,7 +8,7 @@ import (
 	"net/url"
 	"strings"
 
-	"github.com/bah2830/personal-website/github"
+	"github.com/bah2830/brentahughes.com/github"
 	"github.com/spf13/viper"
 )
 
