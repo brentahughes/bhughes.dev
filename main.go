@@ -3,9 +3,9 @@ package main
 import (
 	"fmt"
 
+	"github.com/bah2830/personal-website/github"
+	"github.com/bah2830/personal-website/webserver"
 	"github.com/spf13/viper"
-	"gitlab.com/bah2830/personal-website/github"
-	"gitlab.com/bah2830/personal-website/webserver"
 )
 
 func main() {

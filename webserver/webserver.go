@@ -8,8 +8,8 @@ import (
 	"net/url"
 	"strings"
 
+	"github.com/bah2830/personal-website/github"
 	"github.com/spf13/viper"
-	"gitlab.com/bah2830/personal-website/github"
 )
 
 var templates = template.Must(template.ParseGlob("templates/*.html"))
