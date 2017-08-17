@@ -1,6 +1,7 @@
 package github
 
 import (
+	"context"
 	"fmt"
 	"time"
 
@@ -32,8 +33,9 @@ func StartPoller() {
 func updateRepos() {
 	fmt.Println("Updating repo cache")
 
+	ctx := context.Background()
 	client := github.NewClient(nil)
-	repos, _, err := client.Repositories.List(viper.GetString("github.username"), nil)
+	repos, _, err := client.Repositories.List(ctx, viper.GetString("github.username"), nil)
 	if err != nil {
 		fmt.Printf("Error updating repo cache. %s", err)
 	}
