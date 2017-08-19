@@ -12,7 +12,7 @@ import (
 	"github.com/spf13/viper"
 )
 
-var templates = template.Must(template.ParseGlob("templates/*.html"))
+var templatePath = "templates/"
 
 type Page struct {
 	Title         string
@@ -84,5 +84,6 @@ func indexHandler(w http.ResponseWriter, r *http.Request) {
 
 	setUserDetails(&p)
 
+	templates := template.Must(template.ParseFiles(templatePath + "index.html"))
 	templates.ExecuteTemplate(w, "index.html", p)
 }
