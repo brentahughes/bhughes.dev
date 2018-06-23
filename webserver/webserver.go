@@ -8,32 +8,47 @@ import (
 	"net/url"
 	"strings"
 
-	"github.com/bah2830/brentahughes.com/github"
 	"github.com/spf13/viper"
+	"gitlab.com/bah2830/brentahughes.com/repo"
 )
 
 var templatePath = "templates/"
 
-type Page struct {
-	Title         string
-	Repos         []github.Repo
-	Contributions []github.Repo
-	Name          string
-	Email         string
-	PhoneNumber   string
-	Address       string
-	SocialIcons   []SocialIcon
+type Webserver struct {
+	repoClient *repo.RepoClient
 }
 
+type Page struct {
+	Title                string
+	Repos                []Repo
+	Contributions        []Repo
+	Name                 string
+	Email                string
+	PhoneNumber          string
+	SocialIcons          []SocialIcon
+	ProjectSource        string
+	ProjectLocation      string
+	ProjectLocationLower string
+}
+
+type Repo struct {
+	Name string
+	URL  string
+	Repo string
+}
 type SocialIcon struct {
 	Site string
 	URL  string
 }
 
-func Start() {
-	fmt.Println("Starting webserver...")
+func GetWebserver(c *repo.RepoClient) *Webserver {
+	return &Webserver{
+		repoClient: c,
+	}
+}
 
-	http.HandleFunc("/", indexHandler)
+func (w *Webserver) Start() {
+	http.HandleFunc("/", w.indexHandler)
 
 	// Setup file server for html resources
 	fs := http.FileServer(http.Dir("content"))
@@ -46,9 +61,18 @@ func Start() {
 }
 
 func setUserDetails(p *Page) {
+	p.Title = viper.GetString("site_title")
 	p.Name = viper.GetString("name")
 	p.Email = viper.GetString("email")
 	p.PhoneNumber = viper.GetString("phone_number")
+	p.ProjectSource = viper.GetString("project_source")
+
+	urlParts, _ := url.Parse(p.ProjectSource)
+	projectIcon := strings.TrimPrefix(urlParts.Host, "www.")
+	parts := strings.Split(projectIcon, ".")
+	projectIcon = parts[0]
+	p.ProjectLocation = strings.Title(projectIcon)
+	p.ProjectLocationLower = strings.ToLower(projectIcon)
 }
 
 func getSocialIcons() []SocialIcon {
@@ -74,10 +98,27 @@ func getSocialIcons() []SocialIcon {
 	return icons
 }
 
-func indexHandler(w http.ResponseWriter, r *http.Request) {
+func (s *Webserver) indexHandler(w http.ResponseWriter, r *http.Request) {
+	originalRepos := make([]Repo, 0)
+	contributions := make([]Repo, 0)
+	repos, _ := s.repoClient.GetRepos(false)
+	for _, r := range repos {
+		repo := Repo{
+			URL:  r.GetURL(),
+			Name: r.GetName(),
+			Repo: r.GetRepo(),
+		}
+
+		if r.IsContribution() {
+			contributions = append(contributions, repo)
+		} else {
+			originalRepos = append(originalRepos, repo)
+		}
+	}
+
 	p := Page{
-		Repos:         github.GetRepos(),
-		Contributions: github.GetContributions(),
+		Repos:         originalRepos,
+		Contributions: contributions,
 	}
 
 	p.SocialIcons = getSocialIcons()

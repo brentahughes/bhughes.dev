@@ -5,7 +5,7 @@
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1">
 
-        <title>{{.Name}}</title>
+        <title>{{.Title}}</title>
 
         <link rel="stylesheet" href="/content/css/bootstrap.min.css">
         <link rel="stylesheet" href="/content/css/font-awesome.min.css">
@@ -143,11 +143,11 @@
 
                     {{range .Repos}}
                         <a class="btn btn-default btn-lg btn-social-link hidden-xs hidden-sm" href="{{.URL}}">
-                            <i class="fa fa-github"></i> {{.Name}}
+                            <i class="fa fa-{{.Repo}}"></i> {{.Name}}
                         </a>
 
                         <a class="btn btn-default btn-sm btn-social-link visible-xs visible-sm" href="{{.URL}}">
-                            <i class="fa fa-github"></i> {{.Name}}
+                            <i class="fa fa-{{.Repo}}"></i> {{.Name}}
                         </a>
                     {{end}}
                 </div>
@@ -157,11 +157,11 @@
 
                     {{range .Contributions}}
                         <a class="btn btn-default btn-lg btn-social-link hidden-xs hidden-sm" href="{{.URL}}" target="_new">
-                            <i class="fa fa-github"></i> {{.Name}}
+                            <i class="fa fa-{{.Repo}}"></i> {{.Name}}
                         </a>
 
                         <a class="btn btn-default btn-sm btn-social-link visible-xs visible-sm" href="{{.URL}}" target="_new">
-                            <i class="fa fa-github"></i> {{.Name}}
+                            <i class="fa fa-{{.Repo}}"></i> {{.Name}}
                         </a>
                     {{end}}
                 </div>
@@ -191,9 +191,9 @@
                 </div>
                 <div class="col-sm-4 text-center">
                     View on
-                    <a href="https://github.com/bah2830/brentahughes.com">
-                        GitHub
-                        <i class="fa fa-github"></i>
+                    <a href="{{.ProjectSource}}">
+                        {{.ProjectLocation}}
+                        <i class="fa fa-{{.ProjectLocationLower}}"></i>
                     </a>
                 </div>
                 <div class="col-sm-4 text-right">
@@ -207,9 +207,9 @@
                 </div>
                 <div class="col-xs-6 text-right">
                     View on
-                    <a href="https://github.com/bah2830/brentahughes.com">
-                        GitHub
-                        <i class="fa fa-github"></i>
+                    <a href="{{.ProjectSource}}">
+                        {{.ProjectLocation}}
+                        <i class="fa fa-{{.ProjectLocationLower}}"></i>
                     </a>
                 </div>
             </div>
