@@ -2,3 +2,5 @@
 
 Personal website that gathers contribution information from the github api
 
+### Requirements
+- Requires go 1.11 or higher for go modules
