@@ -112,8 +112,9 @@
         </div>
         <br>
 
-        <div class="container">
+        <div class="container-fluid">
             <div class="row text-center">
+                <div class="col-md-1 hidden-sm hidden-xs">&nbsp;</div>
                 <div class="col-md-5 col-sm-6 info-tile">
                     <h3>Hobbies</h3>
 
@@ -122,7 +123,6 @@
                     IoT<br>
                     3D Printing<br>
                 </div>
-                <div class="col-md-2 hidden-sm hidden-xs">&nbsp;</div>
                 <div class="col-md-5 col-sm-6 info-tile">
                     <h3>Technologies</h3>
 
@@ -132,39 +132,42 @@
                     RabbitMQ - Mosquito MQTT<br>
                     Docker - Vagrant<br>
                 </div>
+                <div class="col-md-1 hidden-sm hidden-xs">&nbsp;</div>
             </div>
         </div>
         <br><br>
 
-        <div class="container">
+        <div class="container-fluid">
             <div class="row text-center">
+                <div class="col-md-1 hidden-sm hidden-xs">&nbsp;</div>
                 <div class="col-md-5 col-sm-6">
                     <h3>Projects</h3>
 
                     {{range .Repos}}
-                        <a class="btn btn-default btn-lg btn-social-link hidden-xs hidden-sm" href="{{.URL}}">
+                        <a class="btn btn-default btn-md btn-social-link hidden-xs hidden-sm" target="_new" href="{{.URL}}">
                             <i class="fa fa-{{.Repo}}"></i> {{.Name}}
                         </a>
 
-                        <a class="btn btn-default btn-sm btn-social-link visible-xs visible-sm" href="{{.URL}}">
+                        <a class="btn btn-default btn-sm btn-social-link visible-xs visible-sm" target="_new" href="{{.URL}}">
                             <i class="fa fa-{{.Repo}}"></i> {{.Name}}
                         </a>
                     {{end}}
                 </div>
-                <div class="col-md-2 hidden-sm hidden-xs">&nbsp;</div>
+
                 <div class="col-md-5 col-sm-6">
                     <h3>Contributions</h3>
 
                     {{range .Contributions}}
-                        <a class="btn btn-default btn-lg btn-social-link hidden-xs hidden-sm" href="{{.URL}}" target="_new">
+                        <a class="btn btn-default btn-md btn-social-link hidden-xs hidden-sm" target="_new" href="{{.URL}}" target="_new">
                             <i class="fa fa-{{.Repo}}"></i> {{.Name}}
                         </a>
 
-                        <a class="btn btn-default btn-sm btn-social-link visible-xs visible-sm" href="{{.URL}}" target="_new">
+                        <a class="btn btn-default btn-sm btn-social-link visible-xs visible-sm" target="_new" href="{{.URL}}" target="_new">
                             <i class="fa fa-{{.Repo}}"></i> {{.Name}}
                         </a>
                     {{end}}
                 </div>
+                <div class="col-md-1 hidden-sm hidden-xs">&nbsp;</div>
             </div>
         </div>
         <br>

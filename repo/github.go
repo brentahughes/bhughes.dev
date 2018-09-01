@@ -43,7 +43,7 @@ func (c *GithubClient) GetPublicRepos() ([]Repo, error) {
 	for _, repo := range r {
 		repos = append(repos, &GithubRepo{
 			Name:         *repo.Name,
-			URL:          *repo.URL,
+			URL:          *repo.SVNURL,
 			Contribution: *repo.Fork,
 		})
 	}

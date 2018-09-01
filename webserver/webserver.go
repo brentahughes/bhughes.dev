@@ -64,7 +64,7 @@ func setUserDetails(p *Page) {
 	p.Title = viper.GetString("site_title")
 	p.Name = viper.GetString("name")
 	p.Email = viper.GetString("email")
-	p.PhoneNumber = viper.GetString("phone_number")
+	p.PhoneNumber = viper.GetString("phone")
 	p.ProjectSource = viper.GetString("project_source")
 
 	urlParts, _ := url.Parse(p.ProjectSource)
