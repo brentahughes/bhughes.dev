@@ -12,7 +12,10 @@ import (
 	"gitlab.com/bah2830/brentahughes.com/repo"
 )
 
-var templatePath = "templates/"
+var (
+	templatePath  = "templates/"
+	indexTemplate *template.Template
+)
 
 type Webserver struct {
 	repoClient *repo.RepoClient
@@ -39,6 +42,10 @@ type Repo struct {
 type SocialIcon struct {
 	Site string
 	URL  string
+}
+
+func init() {
+	indexTemplate, _ = template.ParseFiles(templatePath + "index.html")
 }
 
 func GetWebserver(c *repo.RepoClient) *Webserver {
@@ -125,6 +132,5 @@ func (s *Webserver) indexHandler(w http.ResponseWriter, r *http.Request) {
 
 	setUserDetails(&p)
 
-	templates := template.Must(template.ParseFiles(templatePath + "index.html"))
-	templates.ExecuteTemplate(w, "index.html", p)
+	indexTemplate.Execute(w, p)
 }
