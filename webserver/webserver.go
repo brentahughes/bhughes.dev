@@ -55,6 +55,7 @@ func GetWebserver(c *repo.RepoClient) *Webserver {
 }
 
 func (w *Webserver) Start() {
+	http.HandleFunc("/favicon.ico", w.faviconHandler)
 	http.HandleFunc("/", w.indexHandler)
 
 	// Setup file server for html resources
@@ -103,6 +104,10 @@ func getSocialIcons() []SocialIcon {
 	}
 
 	return icons
+}
+
+func (s *Webserver) faviconHandler(w http.ResponseWriter, r *http.Request) {
+	http.ServeFile(w, r, "content/favicon.ico")
 }
 
 func (s *Webserver) indexHandler(w http.ResponseWriter, r *http.Request) {
