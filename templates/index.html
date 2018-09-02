@@ -8,7 +8,6 @@
         <title>{{.Title}}</title>
 
         <link rel="stylesheet" href="/content/css/bootstrap.min.css">
-        <link rel="stylesheet" href="/content/css/font-awesome.min.css">
 
         <style type="text/css">
             body {
@@ -145,11 +144,11 @@
 
                     {{range .Repos}}
                         <a class="btn btn-default btn-md btn-social-link hidden-xs hidden-sm" target="_new" href="{{.URL}}">
-                            <i class="fa fa-{{.Repo}}"></i> {{.Name}}
+                            <img src="/content/img/icons/{{.Repo}}.svg" height="12"> {{.Name}}
                         </a>
 
                         <a class="btn btn-default btn-sm btn-social-link visible-xs visible-sm" target="_new" href="{{.URL}}">
-                            <i class="fa fa-{{.Repo}}"></i> {{.Name}}
+                            <img src="/content/img/icons/{{.Repo}}.svg" height="12"> {{.Name}}
                         </a>
                     {{end}}
                 </div>
@@ -159,11 +158,11 @@
 
                     {{range .Contributions}}
                         <a class="btn btn-default btn-md btn-social-link hidden-xs hidden-sm" target="_new" href="{{.URL}}" target="_new">
-                            <i class="fa fa-{{.Repo}}"></i> {{.Name}}
+                            <img src="/content/img/icons/{{.Repo}}.svg" height="12"> {{.Name}}
                         </a>
 
                         <a class="btn btn-default btn-sm btn-social-link visible-xs visible-sm" target="_new" href="{{.URL}}" target="_new">
-                            <i class="fa fa-{{.Repo}}"></i> {{.Name}}
+                            <img src="/content/img/icons/{{.Repo}}.svg" height="12"> {{.Name}}
                         </a>
                     {{end}}
                 </div>
@@ -179,7 +178,7 @@
 
                     {{range .SocialIcons}}
                         <a class="btn btn-social-icon btn-{{.Site}}" href="{{.URL}}" target="_new">
-                            <i class="fa fa-2x fa-{{.Site}}"></i>
+                            <img src="/content/img/icons/{{.Site}}.svg" height="22">
                         </a>
                     {{end}}
                 </div>
@@ -196,7 +195,7 @@
                     View on
                     <a href="{{.ProjectSource}}">
                         {{.ProjectLocation}}
-                        <i class="fa fa-{{.ProjectLocationLower}}"></i>
+                        <img src="/content/img/icons/{{.ProjectLocationLower}}.svg" height="12">
                     </a>
                 </div>
                 <div class="col-sm-4 text-right">
@@ -212,7 +211,7 @@
                     View on
                     <a href="{{.ProjectSource}}">
                         {{.ProjectLocation}}
-                        <i class="fa fa-{{.ProjectLocationLower}}"></i>
+                        <img src="/content/img/icons/{{.ProjectLocationLower}}.svg" height="12">
                     </a>
                 </div>
             </div>
