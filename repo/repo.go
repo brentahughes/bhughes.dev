@@ -5,15 +5,13 @@ import (
 )
 
 type Client interface {
-	GetPublicRepos() ([]Repo, error)
-	GetPrivateRepos() ([]Repo, error)
+	GetPublicRepos() ([]*Repo, error)
+	GetContributions() ([]*Repo, error)
 }
 
-type Repo interface {
-	GetName() string
-	GetURL() string
-	GetRepo() string
-	IsContribution() bool
+type Repo struct {
+	Name, URL, Repo, Source string
+	Contribution            bool
 }
 
 type Config struct {
@@ -27,13 +25,15 @@ type RepoConfig struct {
 }
 
 type RepoClient struct {
-	clients []Client
-	repos   []Repo
+	clients       []Client
+	repos         []*Repo
+	contributions []*Repo
 }
 
 func GetClient(c *Config) *RepoClient {
 	return &RepoClient{
-		repos: make([]Repo, 0),
+		repos:         make([]*Repo, 0),
+		contributions: make([]*Repo, 0),
 		clients: []Client{
 			getGitHubClient(c),
 			getGitlabClient(c),
@@ -41,12 +41,12 @@ func GetClient(c *Config) *RepoClient {
 	}
 }
 
-func (c *RepoClient) GetRepos(fresh bool) ([]Repo, error) {
+func (c *RepoClient) GetRepos(fresh bool) ([]*Repo, error) {
 	if !fresh {
 		return c.repos, nil
 	}
 
-	allRepos := make([]Repo, 0)
+	allRepos := make([]*Repo, 0)
 	for _, c := range c.clients {
 		repos, err := c.GetPublicRepos()
 		if err != nil {
@@ -57,7 +57,7 @@ func (c *RepoClient) GetRepos(fresh bool) ([]Repo, error) {
 			allRepos = append(allRepos, repos...)
 		}
 
-		repos, err = c.GetPrivateRepos()
+		repos, err = c.GetContributions()
 		if err != nil {
 			return nil, err
 		}

@@ -20,7 +20,7 @@ require (
 	github.com/stretchr/testify v1.2.2 // indirect
 	github.com/xanzy/go-gitlab v0.10.6
 	golang.org/x/net v0.0.0-20180621144259-afe8f62b1d6b // indirect
-	golang.org/x/oauth2 v0.0.0-20180620175406-ef147856a6dd // indirect
+	golang.org/x/oauth2 v0.0.0-20180620175406-ef147856a6dd
 	golang.org/x/sync v0.0.0-20180314180146-1d60e4601c6f // indirect
 	golang.org/x/sys v0.0.0-20180622082034-63fc586f45fe // indirect
 	golang.org/x/text v0.3.0 // indirect

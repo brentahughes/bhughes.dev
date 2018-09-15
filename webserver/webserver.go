@@ -23,8 +23,8 @@ type Webserver struct {
 
 type Page struct {
 	Title                string
-	Repos                []Repo
-	Contributions        []Repo
+	Repos                []*repo.Repo
+	Contributions        []*repo.Repo
 	Name                 string
 	Email                string
 	PhoneNumber          string
@@ -34,11 +34,6 @@ type Page struct {
 	ProjectLocationLower string
 }
 
-type Repo struct {
-	Name string
-	URL  string
-	Repo string
-}
 type SocialIcon struct {
 	Site string
 	URL  string
@@ -111,20 +106,15 @@ func (s *Webserver) faviconHandler(w http.ResponseWriter, r *http.Request) {
 }
 
 func (s *Webserver) indexHandler(w http.ResponseWriter, r *http.Request) {
-	originalRepos := make([]Repo, 0)
-	contributions := make([]Repo, 0)
+	originalRepos := make([]*repo.Repo, 0)
+	contributions := make([]*repo.Repo, 0)
+
 	repos, _ := s.repoClient.GetRepos(false)
 	for _, r := range repos {
-		repo := Repo{
-			URL:  r.GetURL(),
-			Name: r.GetName(),
-			Repo: r.GetRepo(),
-		}
-
-		if r.IsContribution() {
-			contributions = append(contributions, repo)
+		if r.Contribution {
+			contributions = append(contributions, r)
 		} else {
-			originalRepos = append(originalRepos, repo)
+			originalRepos = append(originalRepos, r)
 		}
 	}
 

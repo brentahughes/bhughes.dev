@@ -23,8 +23,14 @@ func main() {
 	// asynchronously get Github stats without
 	// wasting the users time during page load.
 	repoClient := repo.GetClient(&repo.Config{
-		Github: repo.RepoConfig{Username: viper.GetString("github.username")},
-		Gitlab: repo.RepoConfig{Username: viper.GetString("gitlab.username"), Token: viper.GetString("gitlab.user_id")},
+		Github: repo.RepoConfig{
+			Username: viper.GetString("github.username"),
+			Token:    viper.GetString("github.token"),
+		},
+		Gitlab: repo.RepoConfig{
+			Username: viper.GetString("gitlab.username"),
+			Token:    viper.GetString("gitlab.user_id"),
+		},
 	})
 
 	// Make sure we can get the repos
@@ -37,7 +43,7 @@ func main() {
 
 	// Start the pller
 	log.Println("Starting repo polling")
-	go repoClient.Poll(1 * time.Hour)
+	go repoClient.Poll(6 * time.Hour)
 
 	// Start the web server
 	log.Println("Starting webserver")

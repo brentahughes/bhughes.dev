@@ -13,29 +13,7 @@ type GitlabClient struct {
 	user     *gitlab.User
 }
 
-type GitlabRepo struct {
-	Name         string
-	URL          string
-	Contribution bool
-}
-
-func (r *GitlabRepo) GetName() string {
-	return r.Name
-}
-
-func (r *GitlabRepo) GetURL() string {
-	return r.URL
-}
-
-func (r *GitlabRepo) GetRepo() string {
-	return "gitlab"
-}
-
-func (r *GitlabRepo) IsContribution() bool {
-	return r.Contribution
-}
-
-func (c *GitlabClient) GetPublicRepos() ([]Repo, error) {
+func (c *GitlabClient) GetPublicRepos() ([]*Repo, error) {
 	opt := &gitlab.ListProjectsOptions{
 		Visibility: gitlab.Visibility(gitlab.PublicVisibility),
 		Simple:     gitlab.Bool(true),
@@ -46,9 +24,10 @@ func (c *GitlabClient) GetPublicRepos() ([]Repo, error) {
 		return nil, err
 	}
 
-	repos := make([]Repo, 0)
+	repos := make([]*Repo, 0)
 	for _, repo := range r {
-		repos = append(repos, &GitlabRepo{
+		repos = append(repos, &Repo{
+			Source:       "gitlab",
 			Name:         repo.Name,
 			URL:          repo.WebURL,
 			Contribution: (repo.ForkedFromProject != nil),
@@ -58,7 +37,7 @@ func (c *GitlabClient) GetPublicRepos() ([]Repo, error) {
 	return repos, nil
 }
 
-func (c *GitlabClient) GetPrivateRepos() ([]Repo, error) {
+func (c *GitlabClient) GetContributions() ([]*Repo, error) {
 	return nil, nil
 }
 

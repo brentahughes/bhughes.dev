@@ -2,8 +2,11 @@ package repo
 
 import (
 	"context"
+	"fmt"
+	"strings"
 
 	"github.com/google/go-github/github"
+	"golang.org/x/oauth2"
 )
 
 type GithubClient struct {
@@ -11,53 +14,75 @@ type GithubClient struct {
 	username string
 }
 
-type GithubRepo struct {
-	Name         string
-	URL          string
-	Contribution bool
-}
-
-func (r *GithubRepo) GetName() string {
-	return r.Name
-}
-
-func (r *GithubRepo) GetURL() string {
-	return r.URL
-}
-
-func (r *GithubRepo) GetRepo() string {
-	return "github"
-}
-
-func (r *GithubRepo) IsContribution() bool {
-	return r.Contribution
-}
-
-func (c *GithubClient) GetPublicRepos() ([]Repo, error) {
+func (c *GithubClient) GetPublicRepos() ([]*Repo, error) {
 	r, _, err := c.client.Repositories.List(context.Background(), c.username, nil)
 	if err != nil {
 		return nil, err
 	}
 
-	repos := make([]Repo, 0)
+	repos := make([]*Repo, 0)
 	for _, repo := range r {
-		repos = append(repos, &GithubRepo{
-			Name:         *repo.Name,
-			URL:          *repo.SVNURL,
-			Contribution: *repo.Fork,
+		if *repo.Fork {
+			continue
+		}
+
+		repos = append(repos, &Repo{
+			Source: "github",
+			Name:   *repo.Name,
+			URL:    *repo.SVNURL,
 		})
 	}
 
 	return repos, nil
 }
 
-func (c *GithubClient) GetPrivateRepos() ([]Repo, error) {
-	return nil, nil
+func (c *GithubClient) GetContributions() ([]*Repo, error) {
+	r, _, err := c.client.Search.Issues(
+		context.Background(),
+		fmt.Sprintf("author:%s is:pr", c.username),
+		nil,
+	)
+	if err != nil {
+		return nil, err
+	}
+
+	reposURLs := make(map[string]bool, 0)
+	for _, issue := range r.Issues {
+		if _, ok := reposURLs[*issue.RepositoryURL]; ok {
+			continue
+		}
+
+		reposURLs[*issue.RepositoryURL] = true
+	}
+
+	repos := make([]*Repo, 0)
+	for repoURL := range reposURLs {
+		repoPath := strings.TrimPrefix(repoURL, "https://api.github.com/repos/")
+		parts := strings.Split(repoPath, "/")
+		repos = append(repos, &Repo{
+			Source:       "github",
+			Name:         parts[1],
+			URL:          fmt.Sprintf("https://github.com/%s/%s", parts[0], parts[1]),
+			Contribution: true,
+		})
+	}
+	return repos, nil
 }
 
 func getGitHubClient(c *Config) *GithubClient {
+	client := github.NewClient(nil)
+	if len(c.Github.Token) > 0 {
+		ctx := context.Background()
+		ts := oauth2.StaticTokenSource(
+			&oauth2.Token{AccessToken: c.Github.Token},
+		)
+
+		tc := oauth2.NewClient(ctx, ts)
+		client = github.NewClient(tc)
+	}
+
 	return &GithubClient{
-		client:   github.NewClient(nil),
+		client:   client,
 		username: c.Github.Username,
 	}
 }
