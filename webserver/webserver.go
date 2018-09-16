@@ -8,8 +8,8 @@ import (
 	"net/url"
 	"strings"
 
+	"github.com/bah2830/brentahughes.com/repo"
 	"github.com/spf13/viper"
-	"gitlab.com/bah2830/brentahughes.com/repo"
 )
 
 var (

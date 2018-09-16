@@ -1,4 +1,4 @@
-module gitlab.com/bah2830/brentahughes.com
+module github.com/bah2830/brentahughes.com
 
 require (
 	github.com/BurntSushi/toml v0.3.0 // indirect

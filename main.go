@@ -5,9 +5,9 @@ import (
 	"log"
 	"time"
 
+	"github.com/bah2830/brentahughes.com/repo"
+	"github.com/bah2830/brentahughes.com/webserver"
 	"github.com/spf13/viper"
-	"gitlab.com/bah2830/brentahughes.com/repo"
-	"gitlab.com/bah2830/brentahughes.com/webserver"
 )
 
 func main() {
