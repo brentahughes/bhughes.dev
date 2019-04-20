@@ -25,5 +25,5 @@ require (
 	golang.org/x/sys v0.0.0-20180622082034-63fc586f45fe // indirect
 	golang.org/x/text v0.3.0 // indirect
 	google.golang.org/appengine v1.1.0 // indirect
-	gopkg.in/yaml.v2 v2.2.1 // indirect
+	gopkg.in/yaml.v2 v2.2.2 // indirect
 )

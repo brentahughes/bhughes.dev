@@ -5,11 +5,8 @@ if [ "$1" == "debug" ]; then
     RUN_FLAG="--rm"
 fi
 
-echo "Pulling latest image"
-docker pull golang:latest
-
 echo "Building $APP_NAME image"
-docker build -t $APP_NAME .
+docker build --no-cache -t $APP_NAME .
 
 echo "Removing $APP_NAME container if it exists"
 docker rm -f $APP_NAME
