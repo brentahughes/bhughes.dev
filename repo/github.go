@@ -71,15 +71,6 @@ func (c *GithubClient) GetContributions() ([]*Repo, error) {
 
 func getGitHubClient(c *Config) *GithubClient {
 	client := github.NewClient(nil)
-	if len(c.Github.Token) > 0 {
-		ctx := context.Background()
-		ts := oauth2.StaticTokenSource(
-			&oauth2.Token{AccessToken: c.Github.Token},
-		)
-
-		tc := oauth2.NewClient(ctx, ts)
-		client = github.NewClient(tc)
-	}
 
 	return &GithubClient{
 		client:   client,

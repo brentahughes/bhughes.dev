@@ -2,10 +2,9 @@ site_title: Brent's Site
 name: Brent Hughes
 email: brent@brentahughes.com
 phone: (469)-657-9183
-project_source: https://github.com/bah2830/brentahughes.com
+project_source: https://github.com/brentahughes/brentahughes.com
 github:
-  username: bah2830
-  token: "personal access token if you need more than 60 requests an hour"
+  username: brentahughes
 gitlab:
   username: bah2830
   user_id: 31161

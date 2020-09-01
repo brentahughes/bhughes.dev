@@ -25,7 +25,6 @@ func main() {
 	repoClient := repo.GetClient(&repo.Config{
 		Github: repo.RepoConfig{
 			Username: viper.GetString("github.username"),
-			Token:    viper.GetString("github.token"),
 		},
 		Gitlab: repo.RepoConfig{
 			Username: viper.GetString("gitlab.username"),
