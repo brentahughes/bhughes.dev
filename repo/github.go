@@ -6,7 +6,6 @@ import (
 	"strings"
 
 	"github.com/google/go-github/github"
-	"golang.org/x/oauth2"
 )
 
 type GithubClient struct {
