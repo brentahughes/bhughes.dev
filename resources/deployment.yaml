@@ -1,0 +1,24 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: personal-site
+  labels:
+    app: personal-site
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: personal-site
+  template:
+    metadata:
+      labels:
+        app: personal-site
+    spec:
+      containers:
+        - name: site
+          image: docker.brentahughes.com:443/personal-website:v1
+          env:
+            - name: RESTART
+              value: "2"
+          ports:
+            - containerPort: 8080

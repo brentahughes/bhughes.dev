@@ -1,0 +1,22 @@
+apiVersion: traefik.containo.us/v1alpha1
+kind: IngressRoute
+metadata:
+  name: personal-site
+spec:
+  entryPoints:
+    - websecure
+  routes:
+  - match: Host(`brentahughes.com`, `www.brentahughes.com`, `bhughes.dev`, `www.bhughes.dev`)
+    kind: Rule
+    services:
+    - name: personal-site
+      port: 8080
+  tls:
+    certResolver: letsencrypt
+    domains:
+      - main: brentahughes.com
+        sans:
+          - "*.brentahughes.com"
+      - main: bhughes.dev
+        sans:
+          - "*.bhughes.dev"
